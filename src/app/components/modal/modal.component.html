@@ -1,0 +1,13 @@
+<div class="modal-wrapper">
+  <div class="modal-title" *ngIf="winner">
+    {{winner}}
+  </div>
+
+  <ol class="modal-logs" *ngIf="logs">
+    <li *ngFor="let log of logs">
+      {{log.date | date: 'mediumTime'}} {{log.player | titlecase}} {{log.move}}
+    </li>
+  </ol>
+  <button class="button" (click)="closeModalWindow()">Ok</button>
+</div>
+<div class="modal-background"></div>

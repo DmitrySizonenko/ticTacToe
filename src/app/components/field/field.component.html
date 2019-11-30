@@ -1,0 +1,28 @@
+<fieldset class="field-wrapper">
+  <legend>TicTacToe</legend>
+    <button class="button" (click)="clearField()">Restart</button>
+    <div class="select-wrapper">
+      <div>First turn is:</div>
+      <button [ngClass]="firstTurn === 'user' ? 'button select-button' : 'button select-button disabled'" (click)="setFirstTurn('user')">user</button>
+      <button [ngClass]="firstTurn === 'bot' ? 'button select-button' : 'button select-button disabled'" (click)="setFirstTurn('bot')">bot</button>
+    </div>
+
+    <div class="select-wrapper">
+      <div>Select signature:</div>
+      <button [ngClass]="userSign === 'X' ? 'button select-button' : 'button select-button disabled'" (click)="setSign('X')">X</button>
+      <button [ngClass]="userSign === 'O' ? 'button select-button' : 'button select-button disabled'" (click)="setSign('O')">O</button>
+    </div>
+
+  <div class="field">
+    <div class="cell" *ngFor="let cell of fieldArr; let i = index" (click)="move(i, cell)">
+      <div class="cross" *ngIf="cell.value === 'X'"></div>
+      <div class="circle" *ngIf="cell.value === 'O'"></div>
+    </div>
+  </div>
+
+  <button class="button" *ngIf="gameOverMessage" (click)="showLogs()">Show Logs</button>
+
+</fieldset>
+
+<app-modal *ngIf="showModal" [winner]="gameOverMessage" [logs]="modalLogs"
+           (closeModal)="closeModalWindow($event)"></app-modal>
